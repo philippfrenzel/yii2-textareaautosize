@@ -70,7 +70,7 @@ class yii2textareaautosize extends InputWidget
     {        
         $assets = ob_get_clean();
         echo $assets;
-        
+
         $this->renderInput();
         $this->registerAssets();        
     } 
@@ -80,9 +80,9 @@ class yii2textareaautosize extends InputWidget
      */
     public function renderInput()
     {   
-        Html::addCssClass($this->_displayOptions, 'element' . $this->options['id']);
+        Html::addCssClass($this->_displayOptions, 'element-' . $this->options['id']);
         Html::addCssClass($this->_displayOptions, 'form-control');
-        $input = Html::activeTextarea($name, $this->value, $this->_displayOptions);
+        $input = Html::activeTextarea($this->model, $this->attribute, $this->_displayOptions);
         echo $input;
     }
 
