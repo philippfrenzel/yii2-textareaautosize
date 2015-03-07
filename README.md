@@ -42,8 +42,30 @@ Usage
 Quickstart Looks like this:
 
 ```
-  
-  <?= \yii2textareaautosize\yii2textareaautosize::widget(array(
-      'events'=> $events,
-  ));
+  <?= net\frenzel\textareaautosize\yii2textareaautosize::widget([
+      'model'=> $model,
+      'attribute' => 'fieldname',
+  ]);
+
+  //or to use with form
+
+  echo $form->field($model, 'amount')->widget(net\frenzel\textareaautosize\yii2textareaautosize::classname(), [
+      --options--
+  ]);
+
 ```
+
+### Minimum CSS Requirements
+
+The only requirement is to set box-sizing: border-box and a min-height on the textarea. In the example below, the minimum height is one line of text which is determined from the base font size, line height, and vertical padding and border.
+
+```
+textarea {
+  box-sizing: border-box;
+  max-height: 94px; /* optional, but recommended */
+  min-height: 31px;
+  overflow-x: hidden; /* for Firefox (issue #5) */
+}
+```
+
+Increase the min-height to have more initial rows. Once text exceeds that minimum height the textarea will expand naturally. The overflow-x setting is for Firefox to prevent an initial additional line from appearing.
