@@ -1,8 +1,8 @@
 <?php
 
-namespace yii2fullcalendar\tests\unit;
+namespace net\frenzel\textareaautosize\tests\unit;
 
-use \yii2fullcalendar\yii2fullcalendar;
+use net\frenzel\textareaautosize\yii2textareaautosize;
 
 /**
  * This is MasonryTest unit test.
@@ -13,7 +13,7 @@ use \yii2fullcalendar\yii2fullcalendar;
  * @author    Philipp Frenzel <philipp@frenzel.net>
  */
 
-class FullcalendarTest extends \Codeception\TestCase\Test
+class textareaautosizeTest extends \Codeception\TestCase\Test
 {
     /**
      * @var \UnitTester
@@ -30,7 +30,7 @@ class FullcalendarTest extends \Codeception\TestCase\Test
      */
     protected function _before()
     {
-        $this->instance = new yii2fullcalendar();
+        $this->instance = new yii2textareaautosize();
     }
 
     /**
