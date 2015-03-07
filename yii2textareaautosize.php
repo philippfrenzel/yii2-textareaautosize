@@ -40,12 +40,14 @@ class yii2textareaautosize extends InputWidget
      */
     public function init()
     {        
-        parent::init();
+        ob_start();
+        ob_implicit_flush(false);
+
         //checks for the element id
         if (!isset($this->options['id'])) {
             $this->options['id'] = $this->getId();
-        }
-        $this->registerAssets();
+        }        
+        parent::init();
     }
 
     /**
@@ -60,6 +62,18 @@ class yii2textareaautosize extends InputWidget
         $js[] = "$('textarea.element-$id').textareaAutoSize($cleanOptions);";
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
+
+    /**
+     * Renders the widget.
+     */
+    public function run()
+    {        
+        $assets = ob_get_clean();
+        echo $assets;
+        
+        $this->renderInput();
+        $this->registerAssets();        
+    } 
 
     /**
      * Renders the widget.
