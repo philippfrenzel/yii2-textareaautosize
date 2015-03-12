@@ -15,7 +15,7 @@ use yii\web\View;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\JsExpression;
-use yii\jui\InputWidget;
+use yii\widgets\InputWidget;
 
 class yii2textareaautosize extends InputWidget
 {
