@@ -59,7 +59,7 @@ class yii2textareaautosize extends InputWidget
         $view = $this->getView();
         CoreAsset::register($view);
         $cleanOptions = $this->getClientOptions();
-        $js[] = "$('textarea.element-$id').textareaAutoSize($cleanOptions);";
+        $js[] = "jQuery('textarea.element-$id').textareaAutoSize($cleanOptions);";
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
 
