@@ -16,7 +16,7 @@ class CoreAsset extends AssetBundle
      * [$sourcePath description]
      * @var string
      */
-    public $sourcePath = '@bower/textarea-autosize/dist';
+    public $sourcePath = '@bower/autosize/dest';
 
     /**
      * [$css description]
@@ -29,15 +29,6 @@ class CoreAsset extends AssetBundle
      * @var array
      */
     public $js = [
-        'jquery.textarea_autosize.min.js',
+        'autosize.min.js',
     ];
-    
-    /**
-     * [$depends description]
-     * @var array
-     */
-    public $depends = [
-        'yii\jui\JuiAsset'
-    ];
-
 }
