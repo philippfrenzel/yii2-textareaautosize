@@ -30,7 +30,7 @@ class textareaautosizeTest extends \Codeception\TestCase\Test
      */
     protected function _before()
     {
-        $this->instance = new yii2textareaautosize();
+        $this->instance = new yii2textareaautosize(['name' => 'test']);
     }
 
     /**
