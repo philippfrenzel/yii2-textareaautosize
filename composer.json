@@ -20,7 +20,7 @@
 	"require": {
 		"php": ">=5.4.0",
 		"yiisoft/yii2" : "*",
-		"bower-asset/autosize" : "2.0.0"
+		"bower-asset/textarea-autosize" : "~2.0.0"
 	},
 	"require-dev": {
 		"codeception/codeception": "*"

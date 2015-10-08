@@ -32,7 +32,7 @@ class yii2textareaautosize extends InputWidget
     /**
      * @inerhit doc
      */
-    private $_pluginName = 'textareaautosize';
+    private $_pluginName = 'textarea-autosize';
 
     /**
      * Initializes the widget.
@@ -59,7 +59,7 @@ class yii2textareaautosize extends InputWidget
         $view = $this->getView();
         CoreAsset::register($view);
         $cleanOptions = $this->getClientOptions();
-        $js[] = "autosize($('textarea.element-$id'));";
+        $js[] = "$('textarea.element-$id').textareaAutoSize();";
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
 
