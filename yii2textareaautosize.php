@@ -10,29 +10,22 @@
 
 namespace net\frenzel\textareaautosize;
 
-use Yii;
 use yii\web\View;
 use yii\helpers\Html;
-use yii\helpers\Json;
-use yii\web\JsExpression;
+use yii\helpers\ArrayHelper;
 use yii\widgets\InputWidget;
 
 class yii2textareaautosize extends InputWidget
 {
-    /**
-     * @var array clientOptions the HTML attributes for the widget container tag.
-     */
-    public $clientOptions = [];
-
-    /**
-     * @var array HTML attributes for the displayed input
-     */
-    private $_displayOptions = [];
+	/**
+	 * @var array the HTML attributes for the input tag.
+	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+	 */
+	public $options = [];
 
     /**
      * @inerhit doc
      */
-    private $_pluginName = 'textarea-autosize';
 
     /**
      * Initializes the widget.
@@ -40,14 +33,11 @@ class yii2textareaautosize extends InputWidget
      */
     public function init()
     {        
-        ob_start();
-        ob_implicit_flush(false);
-
-        //checks for the element id
-        if (!isset($this->options['id'])) {
-            $this->options['id'] = $this->getId();
-        }        
         parent::init();
+		if(empty($this->options['rows'])) {
+			$this->options['rows'] = 1;
+		}
+        Html::addCssClass($this->options, ['form-control', $this->options['id']]);
     }
 
     /**
@@ -58,9 +48,8 @@ class yii2textareaautosize extends InputWidget
         $id = $this->options['id'];
         $view = $this->getView();
         CoreAsset::register($view);
-        $cleanOptions = $this->getClientOptions();
-        $js[] = "$('textarea.element-$id').textareaAutoSize();";
-        $view->registerJs(implode("\n", $js),View::POS_READY);
+        $js = "$('textarea." . $id . "').textareaAutoSize();";
+        $view->registerJs($js, View::POS_READY);
     }
 
     /**
@@ -68,31 +57,11 @@ class yii2textareaautosize extends InputWidget
      */
     public function run()
     {        
-        $assets = ob_get_clean();
-        echo $assets;
-
-        $this->renderInput();
         $this->registerAssets();        
+		if ($this->hasModel()) {
+			echo Html::activeTextarea($this->model, $this->attribute, $this->options);
+		} else {
+			echo Html::textarea($this->name, $this->value, $this->options);
+		}
     } 
-
-    /**
-     * Renders the widget.
-     */
-    public function renderInput()
-    {   
-        Html::addCssClass($this->_displayOptions, 'element-' . $this->options['id']);
-        Html::addCssClass($this->_displayOptions, 'form-control');
-        $this->_displayOptions['rows'] = 1;
-        $input = Html::activeTextarea($this->model, $this->attribute, $this->_displayOptions);
-        echo $input;
-    }
-
-    /**
-     * @return array the options for the text field
-     */
-    protected function getClientOptions()
-    {
-        return Json::encode($this->clientOptions);
-    }
-
 }
